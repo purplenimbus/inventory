@@ -75,7 +75,8 @@ class InventoryControllerTest extends TestCase
     $goodResponse->assertSuccessful();
     $this->assertEquals(Inventory::latest()
       ->first()
-      ->items->count(), 0);
+      ->items
+      ->count(), 0);
 
     $goodResponseWithItems = $this->json('PUT', "/api/inventories/{$inventoryId}", [
         'items' => $inventoryItems
@@ -84,7 +85,8 @@ class InventoryControllerTest extends TestCase
     $goodResponseWithItems->assertSuccessful();
     $this->assertEquals(Inventory::latest()
       ->first()
-      ->items->count(), 3);
+      ->items
+      ->count(), 3);
 
     $badResponse = $this->json('PUT', '/api/inventories/100');
 
