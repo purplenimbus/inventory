@@ -20,7 +20,7 @@ class Order extends Model
    *
    */
   public function items() {
-  	$this->hasMany('App\OrderItem');
+  	return $this->hasMany('App\OrderItem');
   }
 
   /**
@@ -28,7 +28,7 @@ class Order extends Model
    *
    */
   public function user() {
-  	$this->belongsTo('App\User');
+  	return $this->belongsTo('App\User');
   }
 
   /**
@@ -36,6 +36,6 @@ class Order extends Model
    *
    */
   public function status() {
-  	$this->hasOne('App\OrderStatus');
+  	return $this->hasOne('App\OrderStatus');
   }
 }

@@ -20,7 +20,7 @@ class OrderItem extends Model
    *
    */
   public function order() {
-  	$this->belongsTo('App\Order');
+  	return $this->belongsTo('App\Order');
   }
 
   /**
@@ -28,6 +28,6 @@ class OrderItem extends Model
    *
    */
   public function inventoryItem() {
-  	$this->hasOne('App\InventoryItem');
+  	return $this->hasOne('App\InventoryItem');
   }
 }

@@ -20,6 +20,6 @@ class Inventory extends Model
    *
    */
   public function items() {
-  	$this->hasMany('App\InventoryItem');
+  	return $this->hasMany('App\InventoryItem', 'inventory_id', 'id');
   }
 }

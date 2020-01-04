@@ -16,7 +16,7 @@ class CreateInventoriesTable extends Migration
     Schema::create('inventories', function (Blueprint $table) {
       $table->bigIncrements('id');
       $table->char('name', 100);
-      $table->longText('description');
+      $table->longText('description')->nullable();
       $table->timestamps();
     });
   }
