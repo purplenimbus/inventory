@@ -18,6 +18,7 @@ class CreateInventoryItemsTable extends Migration
       $table->float('price', 8, 2);
       $table->integer('quantity')->default(0);
       $table->integer('inventory_id');
+      $table->mediumText('description', 100)->nullable();
       $table->timestamps();
     });
   }

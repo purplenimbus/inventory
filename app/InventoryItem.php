@@ -12,7 +12,11 @@ class InventoryItem extends Model
    * @var array
    */
   protected $fillable = [
-    'inventory_id', 'price', 'quantity',
+    'description', 'inventory_id', 'price', 'quantity',
+  ];
+
+  protected $hidden = [
+    'inventory_id',
   ];
 
   /**

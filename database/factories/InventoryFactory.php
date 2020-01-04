@@ -15,6 +15,7 @@ $factory->define(Inventory::class, function (Faker $faker) {
 
 $factory->define(InventoryItem::class, function (Faker $faker) {
     return [
+    	'description' => $faker->sentence(),
     	'quantity' => $faker->randomFloat(2, 0, 100),
     	'price' => $faker->randomFloat(2, 5, 100),
     ];
