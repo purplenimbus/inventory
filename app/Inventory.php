@@ -22,4 +22,12 @@ class Inventory extends Model
   public function items() {
   	return $this->hasMany('App\InventoryItem', 'inventory_id', 'id');
   }
+
+  public static function boot() {
+    parent::boot();
+
+    static::deleting(function($inventory) { 
+      $inventory->items()->delete();
+    });
+  }
 }

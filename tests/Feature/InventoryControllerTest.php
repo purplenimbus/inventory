@@ -106,13 +106,21 @@ class InventoryControllerTest extends TestCase
    */
   public function testDestroy()
   {
-    $inventories = factory(Inventory::class, 3)->create();
+    $inventories = factory(Inventory::class, 3)
+      ->create()
+      ->each(function($inventory){
+        factory(InventoryItem::class, 3)->create([
+          'inventory_id' => $inventory->id,
+        ]);
+      });
 
     $goodResponse = $this->json('DELETE', "/api/inventories/{$inventories->first()->id}");
 
     $goodResponse->assertSuccessful();
     $this->assertEquals(Inventory::all()
       ->count(), 2);
+    $this->assertEquals(InventoryItem::where('inventory_id', $inventories->first()->id)
+      ->count(), 0);
 
     $badResponse = $this->json('DELETE', '/api/inventories/100');
 
