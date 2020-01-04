@@ -27,7 +27,7 @@ class UpdateInventory extends FormRequest
       'id' => 'required|integer|exists:inventories,id',
       'items' => 'array',
       'items.*.description' => 'string|required',
-      'items.*.price' => 'integer|required|min:0',
+      'items.*.price' => 'numeric|required|min:0',
       'items.*.quantity' => 'integer|required|min:0',
       'description' => 'string',
       'name' => 'string',

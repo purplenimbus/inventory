@@ -15,10 +15,6 @@ class InventoryItem extends Model
     'description', 'inventory_id', 'price', 'quantity',
   ];
 
-  protected $hidden = [
-    'inventory_id',
-  ];
-
   /**
    * Get the inventory that this item belongs to
    *

@@ -57,11 +57,13 @@ class InventoryController extends Controller
   {
     $inventory = Inventory::find($request->id);
 
-    foreach($request->get('items') as $item){
-      $item['inventory_id'] = $inventory->id;
+    if($request->has('items')){
+      foreach($request->get('items') as $item){
+        $item['inventory_id'] = $inventory->id;
 
-      InventoryItem::create($item);
-    };
+        InventoryItem::create($item);
+      };
+    }
 
     return $inventory->load('items');
   }
