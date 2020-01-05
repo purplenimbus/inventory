@@ -124,7 +124,10 @@ class OrderControllerTest extends TestCase
         ]
       ]
     ];
-
+    var_dump(Order::latest()
+      ->first()
+      ->items
+      ->count());
     $order = $this->orders->first();
     $goodResponse = $this->json('PUT', "/api/orders/{$order->id}", $payload);
 
