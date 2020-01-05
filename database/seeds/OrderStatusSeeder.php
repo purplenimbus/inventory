@@ -12,8 +12,8 @@ class OrderStatusSeeder extends Seeder
     public function run()
     {
       $statuses = [
-      	['name' => 'completed'],
       	['name' => 'created'],
+        ['name' => 'completed'],
       	['name' => 'voided'],
       ];
 

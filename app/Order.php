@@ -20,7 +20,7 @@ class Order extends Model
    *
    */
   public function items() {
-  	return $this->hasMany('App\OrderItem');
+  	return $this->hasMany('App\OrderItem', 'order_id', 'id');
   }
 
   /**
@@ -36,6 +36,14 @@ class Order extends Model
    *
    */
   public function status() {
-  	return $this->hasOne('App\OrderStatus');
+  	return $this->hasOne('App\OrderStatus', 'id', 'status_id');
+  }
+
+  public static function boot() {
+    parent::boot();
+
+    static::deleting(function($order) { 
+      $order->items()->delete();
+    });
   }
 }

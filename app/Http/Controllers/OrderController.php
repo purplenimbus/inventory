@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\OrderService;
 use App\Order;
+use App\Http\Requests\ShowOrder;
+use App\Http\Requests\StoreOrder;
 use Illuminate\Http\Request;
+use App\Rules\InStock;
 
 class OrderController extends Controller
 {
@@ -14,7 +18,7 @@ class OrderController extends Controller
    */
   public function index()
   {
-      //
+    return Order::with(['items','status'])->paginate(10);
   }
 
 
@@ -24,9 +28,15 @@ class OrderController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(StoreOrder $request)
   {
-      //
+    $request->validate([
+      'items.*.quantity' => new InStock($request->get('items')),
+    ]);
+
+    $order = new OrderService(Order::make($request->only(['user_id'])));
+
+    return response()->json($order->placeOrder($request->items));
   }
 
   /**
@@ -35,9 +45,9 @@ class OrderController extends Controller
    * @param  \App\Order  $order
    * @return \Illuminate\Http\Response
    */
-  public function show(Order $order)
+  public function show(ShowOrder $order)
   {
-      //
+    return Order::with('items')->find($order->id);
   }
 
   /**
@@ -58,8 +68,10 @@ class OrderController extends Controller
    * @param  \App\Order  $order
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Order $order)
+  public function destroy(ShowOrder $order)
   {
-      //
+    Order::destroy($order->id);
+
+    return response()->json(['status' => true]);
   }
 }

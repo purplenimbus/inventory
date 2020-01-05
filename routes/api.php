@@ -15,4 +15,5 @@ use Illuminate\Http\Request;
 
 Route::resource('inventories', 'InventoryController')
 	->only(['index', 'store', 'show', 'update', 'destroy']);
-
+Route::resource('orders', 'OrderController')
+	->only(['index', 'store', 'show', 'update', 'destroy']);

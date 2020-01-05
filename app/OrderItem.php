@@ -12,7 +12,7 @@ class OrderItem extends Model
    * @var array
    */
   protected $fillable = [
-    'status_id', 'iser_id',
+    'inventory_item_id','order_id','quantity',
   ];
 
   /**
