@@ -36,8 +36,8 @@ class UpdateInventory extends FormRequest
 
   public function all($keys = null) 
   {
-     $data = parent::all();
-     $data['id'] = $this->route('inventory');
-     return $data;
+    $data = parent::all();
+    $data['id'] = $this->route('inventory');
+    return $data;
   }
 }

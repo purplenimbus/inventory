@@ -65,7 +65,7 @@ class InventoryController extends Controller
       };
     }
 
-    return $inventory->load('items');
+    return response()->json($inventory->load('items'));
   }
 
   /**

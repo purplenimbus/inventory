@@ -6,6 +6,7 @@ use App\Services\OrderService;
 use App\Order;
 use App\Http\Requests\ShowOrder;
 use App\Http\Requests\StoreOrder;
+use App\Http\Requests\UpdateOrder;
 use Illuminate\Http\Request;
 use App\Rules\InStock;
 
@@ -57,9 +58,15 @@ class OrderController extends Controller
    * @param  \App\Order  $order
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Order $order)
+  public function update(UpdateOrder $request)
   {
-      //
+    $request->validate([
+      'items.*.quantity' => new InStock($request->get('items')),
+    ]);
+
+    $order = new OrderService(Order::find($request->id));
+
+    return response()->json($order->updateOrder($request->items));
   }
 
   /**

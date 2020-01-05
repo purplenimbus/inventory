@@ -33,10 +33,12 @@ class InventoryControllerTest extends TestCase
   public function testStore()
   {
     $badResponse = $this->json('POST', '/api/inventories', []);
+
     $badResponse->assertStatus(422);
 
     $inventory = factory(Inventory::class)->make();
     $goodResponse = $this->json('POST', '/api/inventories', $inventory->toArray());
+
     $goodResponse->assertSuccessful();
     $this->assertEquals($goodResponse->json()["id"], Inventory::latest()->first()->id);
   }
@@ -50,10 +52,13 @@ class InventoryControllerTest extends TestCase
   {
     $inventory = factory(Inventory::class)->create();
     $inventoryId = Inventory::first()->id;
+
     $goodResponse = $this->json('GET', "/api/inventories/{$inventoryId}");
+
     $goodResponse->assertSuccessful();
 
     $badResponse = $this->json('GET', '/api/inventories/100');
+
     $badResponse->assertStatus(422);
   }
 
