@@ -119,15 +119,12 @@ class OrderControllerTest extends TestCase
     $payload = [
       'items' => [
         [
-          'inventory_item_id' => $this->inventory->first()->items->first()->id,
+          'inventory_item_id' => $this->inventory->first()->items->last()->id,
           'quantity' => 1,
         ]
       ]
     ];
-    var_dump(Order::latest()
-      ->first()
-      ->items
-      ->count());
+
     $order = $this->orders->first();
     $goodResponse = $this->json('PUT', "/api/orders/{$order->id}", $payload);
 
@@ -135,7 +132,7 @@ class OrderControllerTest extends TestCase
     $this->assertEquals(Order::latest()
       ->first()
       ->items
-      ->count(), $order->items->count());
+      ->count(), 3);
 
     $badResponse = $this->json('PUT', '/api/orders/100', []);
 
