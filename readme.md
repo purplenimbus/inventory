@@ -2,7 +2,7 @@
 
 Concussion app back end on laravel
 
-# Dev Environment
+# Installation
 
  1. Clone the repo `git clone git@github.com:purplenimbus/inventory.git`
  2. Install composer dependencies `composer install`
@@ -13,4 +13,7 @@ Concussion app back end on laravel
  7. Migrate && Seed your database `php artisan migrate:refresh --seed`
  8. Generate a key `php artisan jwt:secret`
  9. Start the Server `php artisan serve`
- 10 run tests `./vendor/bin/phpunit`
+
+# Running Tests
+
+run tests  with `./vendor/bin/phpunit`
