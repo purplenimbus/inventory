@@ -1,7 +1,7 @@
 # Installation
 
  1. Clone the repo `git clone git@github.com:purplenimbus/inventory.git`
- 2. Install composer dependencies `composer install`
+ 2. Navigate to the installation folder and install composer dependencies `composer install`
  3. Install npm dependencies `npm install`
  4. Download [this](https://github.com/laravel/laravel/blob/master/.env.example);
  5. Open .env.example in a text editor and Change DB_DATABASE , DB_USERNAME ,DB_PASSWORD to your database credentials
