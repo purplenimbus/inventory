@@ -1,7 +1,3 @@
-# inventory-api
-
-Concussion app back end on laravel
-
 # Installation
 
  1. Clone the repo `git clone git@github.com:purplenimbus/inventory.git`
