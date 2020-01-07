@@ -34,13 +34,7 @@ class OrderControllerTest extends TestCase
     $this->orders = factory(Order::class, 1)->create([
       'user_id' => $this->user->id,
     ])->each(function($order) {
-      factory(OrderItem::class)->create([
-        'inventory_item_id' => $this->inventory->first()->items->first()->id,
-        'order_id' => $order->id,
-        'quantity' => rand(0, $this->inventory->first()->items->first()->quantity)
-      ]);
-
-      factory(OrderItem::class)->create([
+      factory(OrderItem::class, 2)->create([
         'inventory_item_id' => $this->inventory->first()->items->first()->id,
         'order_id' => $order->id,
         'quantity' => rand(0, $this->inventory->first()->items->first()->quantity)
